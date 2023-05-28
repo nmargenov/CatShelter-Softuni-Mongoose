@@ -1,0 +1,28 @@
+{
+  "name": "catshelter-mongoose",
+  "version": "1.0.0",
+  "description": "The project is done on my own using softuni's catShelter and mongooseDB",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmargenov/CatShelter-Softuni-Mongoose.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmargenov/CatShelter-Softuni-Mongoose/issues"
+  },
+  "homepage": "https://github.com/nmargenov/CatShelter-Softuni-Mongoose#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.7",
+    "mongoose": "^7.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
