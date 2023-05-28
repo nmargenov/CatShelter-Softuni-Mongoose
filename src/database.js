@@ -53,9 +53,19 @@ async function getAllCats(){
     return await Cat.find();
 }
 
+async function getCatByID(id){
+    connectDb();
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return false;
+    }
+    return await Cat.findById(id);
+}
+
 module.exports = {
     addCat,
     getAllCats,
+    getCatByID,
     addBreed,
     getAllBreeds
 }

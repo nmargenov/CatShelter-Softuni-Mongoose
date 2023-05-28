@@ -1,4 +1,4 @@
-const { addBreed, getAllBreeds, addCat } = require('../database');
+const { addBreed, getAllBreeds, addCat, getCatByID } = require('../database');
 
 const router = require('express').Router();
 
@@ -57,8 +57,23 @@ router.post('/addCat',async (req,res)=>{
 
 
 router.get('/:catID/edit',async (req,res)=>{
-    res.render('editCat');
+    const catID = req.params.catID;
+    
+    const cat = await getCatByID(catID);
+    
+    if(!cat){
+        res.status(404);
+        res.write("Not found!");
+        res.end();
+    }
+    else{
+        const breeds = await getAllBreeds();
+        const {name,description,imageUrl,breed} = cat;
+        res.render('editCat',{name,description,imageUrl,breeds});
+    }
+
 });
+
 
 
 //End of details//////////////////////////////////////////////////////////////////////////////////////////////
