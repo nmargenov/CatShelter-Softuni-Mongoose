@@ -15,12 +15,19 @@ async function addBreed(breed){
     if(existingBreed){
         return;
     }
-    
+
     await Breed.create({
        breed 
     });
 }
 
+async function getAllBreeds(){
+    connectDb();
+    
+    return await Breed.find();
+}
+
 module.exports = {
-    addBreed
+    addBreed,
+    getAllBreeds
 }

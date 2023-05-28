@@ -1,4 +1,4 @@
-const { addBreed } = require('../database');
+const { addBreed, getAllBreeds } = require('../database');
 
 const router = require('express').Router();
 
@@ -18,8 +18,14 @@ router.post('/addBreed',async (req,res)=>{
     }
 });
 
-router.get('/addCat',(req,res)=>{
-    res.render('addCat');
+router.get('/addCat',async (req,res)=>{
+    const breeds = await getAllBreeds();
+
+    res.render('addCat',{breeds});
+});
+
+router.post('/addCat',async (req,res)=>{
+    
 });
 
 module.exports = router;
