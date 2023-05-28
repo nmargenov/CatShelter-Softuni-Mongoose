@@ -27,7 +27,28 @@ async function getAllBreeds(){
     return await Breed.find();
 }
 
+async function addCat(name,description,imageUrl,breed){
+    connectDb();
+
+    const existingBreed = await Breed.find({breed});
+
+    if(existingBreed.length == 0){
+        return false;
+    }
+
+    
+    const createdCat = await Cat.create({
+        name,
+        description,
+        imageUrl,
+        breed,
+    });
+
+  return createdCat;
+}
+
 module.exports = {
+    addCat,
     addBreed,
     getAllBreeds
 }

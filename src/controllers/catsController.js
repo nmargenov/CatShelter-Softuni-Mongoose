@@ -1,4 +1,4 @@
-const { addBreed, getAllBreeds } = require('../database');
+const { addBreed, getAllBreeds, addCat } = require('../database');
 
 const router = require('express').Router();
 
@@ -30,12 +30,21 @@ router.post('/addCat',async (req,res)=>{
     const imageUrl = req.body.imageUrl.trim();
     const breed = req.body.breed.trim();
     
+    const breeds = await getAllBreeds();
+
     if(name == "" || description =="" || imageUrl == "" || breed == ""){
-        const breeds = await getAllBreeds();
         res.status(400);
         res.render('addCat',{breeds,name,description,imageUrl,breed});
     }else{
-        res.end();
+        const newCat = await addCat(name,description,imageUrl,breed);
+        if(!newCat){
+            res.status(400);
+            res.render('addCat',{breeds,name,description,imageUrl,breed});
+        }else{
+            res.status(201);
+            res.render('index');
+        }
+        
     }
 });
 

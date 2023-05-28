@@ -6,3 +6,7 @@ const catSchema = new mongoose.Schema({
     imageUrl:String,
     breed:String
 });
+
+const Cat = mongoose.model('Cat',catSchema);
+
+module.exports = Cat;
