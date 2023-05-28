@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-router.get(['/','/index'],(req,res)=>{
-    res.render('index');
-});
+const homeController = require('./controllers/homeController');
+
+router.use(homeController);
 router.get('*', (req, res) => {
     res.status(404);
     res.write('Not found!');
