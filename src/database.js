@@ -47,8 +47,15 @@ async function addCat(name,description,imageUrl,breed){
   return createdCat;
 }
 
+async function getAllCats(){
+    connectDb();
+
+    return await Cat.find();
+}
+
 module.exports = {
     addCat,
+    getAllCats,
     addBreed,
     getAllBreeds
 }

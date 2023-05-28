@@ -1,5 +1,6 @@
 const express = require('express');
 
+
 function expressConfig(app) {
     app.use(express.static('src'));
     app.use(express.urlencoded({ extended: false }));

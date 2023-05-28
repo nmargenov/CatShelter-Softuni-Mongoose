@@ -2,6 +2,7 @@ const { addBreed, getAllBreeds, addCat } = require('../database');
 
 const router = require('express').Router();
 
+//Start of addBreed//////////////////////////////////////////////////////////////////////////////////////////////
 router.get('/addBreed',(req,res)=>{
     res.render('addBreed');
 });
@@ -17,6 +18,9 @@ router.post('/addBreed',async (req,res)=>{
         return res.render('index');
     }
 });
+//End of addBreed//////////////////////////////////////////////////////////////////////////////////////////////
+
+//Start of addCat//////////////////////////////////////////////////////////////////////////////////////////////
 
 router.get('/addCat',async (req,res)=>{
     const breeds = await getAllBreeds();
@@ -41,11 +45,22 @@ router.post('/addCat',async (req,res)=>{
             res.status(400);
             res.render('addCat',{breeds,name,description,imageUrl,breed});
         }else{
-            res.status(201);
-            res.render('index');
+            res.redirect('../index');
         }
         
     }
 });
+
+//End of addCat//////////////////////////////////////////////////////////////////////////////////////////////
+
+//Start of details//////////////////////////////////////////////////////////////////////////////////////////////
+
+
+router.get('/:catID/edit',async (req,res)=>{
+    res.render('editCat');
+});
+
+
+//End of details//////////////////////////////////////////////////////////////////////////////////////////////
 
 module.exports = router;
