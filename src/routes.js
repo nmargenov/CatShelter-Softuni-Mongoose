@@ -7,8 +7,7 @@ router.use(homeController);
 router.use('/cats',catsController);
 router.get('*', (req, res) => {
     res.status(404);
-    res.write('Not found!');
-    res.end();
+    res.render('404');
 });
 
 module.exports = router;

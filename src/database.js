@@ -62,10 +62,38 @@ async function getCatByID(id){
     return await Cat.findById(id);
 }
 
+async function editCatByID(id,name,description,imageUrl,breed){
+    connectDb();
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return false;
+    }
+    return await Cat.findByIdAndUpdate(id,{
+        $set:{
+            name,
+            description,
+            imageUrl,
+            breed
+        }
+    });
+}
+
+async function deleteCatByID(id){
+    connectDb();
+
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return false;
+    }
+
+    return await Cat.findByIdAndDelete(id);
+}
+
 module.exports = {
     addCat,
     getAllCats,
     getCatByID,
+    editCatByID,
+    deleteCatByID,
     addBreed,
     getAllBreeds
 }
